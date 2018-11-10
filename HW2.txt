@@ -1,0 +1,22 @@
+Sub StockSummary():
+   Dim Name As String
+
+   Dim total As Double
+   total = 0
+   Dim summaryRow As Integer
+   summaryRow = 2
+
+   For i = 2 To ActiveSheet.UsedRange.Rows.Count
+       If Cells(i, 1).Value <> Cells(i + 1, 1).Value Then
+           Name = Cells(i, 1).Value
+           total = total + Cells(i, 7).Value
+
+           Cells(summaryRow, "I").Value = Name
+           Cells(summaryRow, "J").Value = total
+           summaryRow = summaryRow + 1
+           total = 0
+       Else
+           total = total + Cells(i, 7).Value
+       End If
+   Next i
+End Sub
